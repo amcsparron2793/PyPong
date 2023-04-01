@@ -5,10 +5,10 @@ from os import makedirs
 from os.path import isdir, join
 
 
-def create_logger(project_name=None, log_location="../logs/{}/{}".format(datetime.now().date().isoformat(),
-                                                                         ''.join(
-                                                                             datetime.now().time().isoformat().split(
-                                                                                 '.')[0].split(":")[:-1])),
+def create_logger(project_name=None,
+                  log_location="../logs/{}/{}".format(
+                      datetime.now().date().isoformat(),
+                      ''.join(datetime.now().time().isoformat().split('.')[0].split(":")[:-1])),
                   chosen_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'):
     def _GetProjectName():
         """ Either returns the given project name, or if none is given, uses the __file__ name."""

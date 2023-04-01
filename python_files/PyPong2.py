@@ -7,6 +7,22 @@ import pygame
 from pygame.locals import *
 
 
+class Game:
+    def __init__(self, line_thickness, speed, score, ball, paddles, scoreboard):
+        self.line_thickness: int = line_thickness
+        self.speed: int = speed
+        self.score: int = score
+        self.ball: Ball = ball
+        self.paddles: dict = paddles
+        self.scoreboard: Scoreboard = scoreboard
+
+    def draw_arena(self) -> None:
+        ...
+
+    def update(self) -> None:
+        ...
+
+
 class Paddle:
     def __init__(self, x, w, h):
         self.x: int = x
@@ -41,5 +57,40 @@ class Ball:
         self.dir_x = -1  # -1 = left 1 = right
         self.dir_y = -1  # -1 = up 1 = down
 
+    def draw(self) -> None:
+        ...
+
+    def move(self) -> None:
+        ...
+
+    def bounce(self) -> None:
+        ...
+
+    def hit_ceiling(self) -> bool:
+        ...
+
+    def hit_floor(self) -> bool:
+        ...
+
+    def hit_wall(self) -> bool:
+        ...
+
+    def hit_paddle(self, paddle) -> bool:
+        ...
+
+    def pass_player(self) -> bool:
+        ...
+
+    def pass_computer(self) -> bool:
+        ...
 
 
+class Scoreboard:
+    def __init__(self, x, y, font, score):
+        self.x: int = x
+        self.y: int = y
+        self.font: pygame.font.Font = font
+        self.score: int = score
+
+    def display(self, score) -> None:
+        ...

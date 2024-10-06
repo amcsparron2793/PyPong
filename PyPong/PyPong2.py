@@ -5,10 +5,11 @@ and http://trevorappleton.blogspot.com/2015/04/refactoring-pong-using-object-ori
 
 import pygame
 from pygame.locals import *
-from InitPyPong2 import InitPyPong2
-from Paddle import Paddle, AutoPaddle
-from Ball import Ball
-from Scoreboard import Scoreboard
+from InitializationAndInfo.InitPyPong2 import InitPyPong2
+from InitializationAndInfo.Scoreboard import Scoreboard
+
+from Equipment.Paddle import Paddle, AutoPaddle
+from Equipment.Ball import Ball
 
 
 class Game(InitPyPong2):

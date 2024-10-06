@@ -7,6 +7,7 @@ import pygame
 from pygame.locals import *
 from InitializationAndInfo.InitPyPong2 import InitPyPong2
 from InitializationAndInfo.Scoreboard import Scoreboard
+from InitializationAndInfo.Sound import Sound
 
 from Equipment.Paddle import Paddle, AutoPaddle
 from Equipment.Ball import Ball
@@ -18,6 +19,7 @@ class Game(InitPyPong2):
         self.line_thickness: int = line_thickness or self.DEFAULT_LINE_THICKNESS
         self.speed: int = speed or self.DEFAULT_SPEED
         self.score: int = 0
+        self.sound: Sound = Sound()
 
         ball_x = int(self.WINDOW_WIDTH / 2 - self.line_thickness / 2)
         ball_y = int(self.WINDOW_HEIGHT / 2 - self.line_thickness / 2)
@@ -55,8 +57,10 @@ class Game(InitPyPong2):
         self.paddles['computer'].move()
 
         if self.ball.hit_paddle(self.paddles['computer']):
+            self.sound.low_beep.play()
             self.ball.bounce('x')
         elif self.ball.hit_paddle(self.paddles['user']):
+            self.sound.high_beep.play()
             self.ball.bounce('x')
             self.score += 1
         elif self.ball.pass_computer():

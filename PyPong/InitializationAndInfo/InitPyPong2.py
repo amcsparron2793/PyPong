@@ -1,10 +1,10 @@
 from pygame import display, time, mouse, init as pg_init
 from .Sound import Sound
-from pygame import K_q as Q_key, K_ESCAPE as ESC_key
+from pygame import K_q as Q_key, K_ESCAPE as ESC_KEY
 
 class _HIDEventHandler:
     def _check_keydown_events(self, event):
-        if event.key == Q_key or event.key == ESC_key:
+        if event.key == Q_key or event.key == ESC_KEY:
             # self.sb.write_highscore()
             # if q or esc is pressed pause the game
             self.game_active = False

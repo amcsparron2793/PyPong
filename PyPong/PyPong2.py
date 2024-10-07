@@ -32,12 +32,16 @@ class Game(InitPyPong2):
             if event.type == QUIT:
                 pygame.quit()
                 exit()
+
+            # checks for q or esc which sets self.running to false
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
+
             # checks for mouse movement and moves the user paddle accordingly
             elif event.type == MOUSEMOTION:
                 self.paddles['user'].move(event.pos)
 
+    # TODO: move this to Init somehow?
     def _initialize_ball(self):
         self.starting_ball_x = int(self.WINDOW_WIDTH / 2 - self.line_thickness / 2)
         self.starting_ball_y = int(self.WINDOW_HEIGHT / 2 - self.line_thickness / 2)

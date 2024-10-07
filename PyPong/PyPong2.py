@@ -19,25 +19,8 @@ class Game(InitPyPong2):
         self.speed: int = speed or self.DEFAULT_SPEED
         self.score: int = 0
 
-        # TODO: initialize_ball
-        self.starting_ball_x = int(self.WINDOW_WIDTH / 2 - self.line_thickness / 2)
-        self.starting_ball_y = int(self.WINDOW_HEIGHT / 2 - self.line_thickness / 2)
-        self.ball: Ball = Ball(self, self.starting_ball_x, self.starting_ball_y, self.line_thickness,
-                               self.line_thickness, self.speed)
-
-        # TODO: initialize_paddles
-        self.paddles: dict = {}
-        self.paddle_width = self.DEFAULT_PADDLE_WIDTH
-        self.paddle_height = self.DEFAULT_PADDLE_HEIGHT
-
-        self.starting_user_paddle_x = 20
-        self.starting_computer_paddle_x = self.WINDOW_WIDTH - self.paddle_width - 20
-
-        self.paddles['user'] = Paddle(self, x=self.starting_user_paddle_x,
-                                      w=self.paddle_width, h=self.paddle_height)
-        self.paddles['computer'] = AutoPaddle(self, x=self.starting_computer_paddle_x,
-                                              w=self.paddle_width, h=self.paddle_height,
-                                              ball=self.ball, speed=self.speed)
+        self._initialize_ball()
+        self._initialize_paddles()
 
 
         self.scoreboard: Scoreboard = Scoreboard(self, 0)
@@ -54,6 +37,27 @@ class Game(InitPyPong2):
             # checks for mouse movement and moves the user paddle accordingly
             elif event.type == MOUSEMOTION:
                 self.paddles['user'].move(event.pos)
+
+    def _initialize_ball(self):
+        self.starting_ball_x = int(self.WINDOW_WIDTH / 2 - self.line_thickness / 2)
+        self.starting_ball_y = int(self.WINDOW_HEIGHT / 2 - self.line_thickness / 2)
+        self.ball: Ball = Ball(self, self.starting_ball_x, self.starting_ball_y, self.line_thickness,
+                               self.line_thickness, self.speed)
+
+    def _initialize_paddles(self):
+        self.paddles: dict = {}
+        self.paddle_width = self.DEFAULT_PADDLE_WIDTH
+        self.paddle_height = self.DEFAULT_PADDLE_HEIGHT
+
+        self.starting_user_paddle_x = 20
+        self.starting_computer_paddle_x = self.WINDOW_WIDTH - self.paddle_width - 20
+
+        self.paddles['user'] = Paddle(self, x=self.starting_user_paddle_x,
+                                      w=self.paddle_width, h=self.paddle_height)
+        self.paddles['computer'] = AutoPaddle(self, x=self.starting_computer_paddle_x,
+                                              w=self.paddle_width, h=self.paddle_height,
+                                              ball=self.ball, speed=self.speed)
+
     # TODO: move this to Init somehow
     def draw_arena(self) -> None:
         self.DISPLAY_SURF.fill(self.BLACK)

@@ -87,6 +87,7 @@ class Game(InitPyPong2):
         elif self.ball.pass_computer():
             self.score += 5
         elif self.ball.pass_player():
+            self.sound.player_missed.play()
             self.score = 0
 
     def update(self) -> None:

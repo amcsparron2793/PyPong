@@ -1,4 +1,6 @@
 from pygame import Rect, draw
+
+
 class Paddle:
     def __init__(self, pong_game, x, w, h):
         self.game = pong_game
@@ -28,7 +30,7 @@ class AutoPaddle(Paddle):
     def __init__(self, pong_game, x, w, h, ball, speed):
         self. game = pong_game
         super().__init__(self.game, x, w, h)
-        self.ball: Ball = ball
+        self.ball: 'Ball' = ball
         self.speed: int = speed
 
     def move(self) -> None:
